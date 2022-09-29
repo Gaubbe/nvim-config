@@ -13,6 +13,9 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+
+	-- Colorscheme
+	use 'ellisonleao/gruvbox.nvim'
 	
 	if packer_bootstrap then
 		require('packer').sync()
