@@ -16,6 +16,9 @@ return require('packer').startup(function(use)
 
 	-- Colorscheme
 	use 'ellisonleao/gruvbox.nvim'
+
+	-- LSP
+	use 'neovim/nvim-lspconfig'
 	
 	if packer_bootstrap then
 		require('packer').sync()
