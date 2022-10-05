@@ -18,6 +18,8 @@ return require('packer').startup(function(use)
 	use 'ellisonleao/gruvbox.nvim'
 
 	-- LSP
+	use 'williamboman/mason.nvim'
+	use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
 	
 	if packer_bootstrap then
