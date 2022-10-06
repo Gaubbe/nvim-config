@@ -1,3 +1,3 @@
-require('settings')
 require('plugin-list')
+require('settings')
 require('lsp')

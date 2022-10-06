@@ -21,7 +21,12 @@ return require('packer').startup(function(use)
 	use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
-	
+
+	-- cmp
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'L3MON4D3/LuaSnip'
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
