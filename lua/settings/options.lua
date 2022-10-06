@@ -19,3 +19,5 @@ vim.opt.lazyredraw = true
 
 -- Misc
 vim.opt.hidden = false
+vim.g.mapleader = " "
+
