@@ -1,4 +1,6 @@
 # Changelog
+## Version 0.2.0
+- Added tree-sitter configuration
 ## Patch 0.1.1
 - Changed cmp_nvim_lsp configuration because the update_capabilities method became deprecated
 ## Version 0.1.0

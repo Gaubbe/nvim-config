@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
 
 	-- Colorscheme
 	use 'ellisonleao/gruvbox.nvim'
+	use 'nvim-treesitter/nvim-treesitter'
 
 	-- LSP
 	use 'williamboman/mason.nvim'
