@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-parameter
 -- Remaps
 local function dapmap(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, "<Leader>d" .. lhs, rhs, opts)
@@ -39,6 +40,10 @@ dap.configurations.rust = {
 		stopOnEntry = false
 	}
 }
+
+-- Icons
+vim.fn.sign_define('DapBreakpoint', { text='', texthl='DiagnosticSignError', linehl='', numhl=''})
+vim.fn.sign_define('DapStopped', { text='', texthl='DiagnosticSignInfo'})
 
 -- UI
 local dapui = require('dapui')
