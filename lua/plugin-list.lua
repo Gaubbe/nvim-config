@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
 
 	-- dap
 	use 'mfussenegger/nvim-dap'
+	use 'rcarriga/nvim-dap-ui'
 
 	if packer_bootstrap then
 		require('packer').sync()
