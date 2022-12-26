@@ -1,4 +1,7 @@
 # Changelog
+## Version 0.2.0
+### Features
+- Basic debugging functionality
 ## Version 0.1.0
 ### Features
 - Plugin management with Packer
