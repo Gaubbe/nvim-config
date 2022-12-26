@@ -2,7 +2,8 @@
 ## Version 0.2.0
 ### Features
 - Basic debugging functionality
-- Added tree-sitter configuration
+- Basic tree-sitter configuration
+- Basic telescope configuration
 
 ## Patch 0.1.1
 - Changed cmp_nvim_lsp configuration because the update_capabilities method became deprecated

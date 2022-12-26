@@ -4,4 +4,5 @@
 - LSP
 - Autocompletion
 - Debugging
+- Telescope
 
