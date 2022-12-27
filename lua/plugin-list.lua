@@ -15,13 +15,18 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	-- Colorscheme
-	use 'ellisonleao/gruvbox.nvim'
+	use {
+		'ellisonleao/gruvbox.nvim',
+		config = 'vim.cmd[[colorscheme gruvbox]]'
+	}
+
 	use 'nvim-treesitter/nvim-treesitter'
 
 	-- LSP
 	use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
+	use 'onsails/lspkind.nvim'
 
 	-- cmp
 	use 'hrsh7th/nvim-cmp'
