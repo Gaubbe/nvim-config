@@ -1,1 +1,1 @@
-require('lua.treesitter-conf.setup')
+require('treesitter-conf.setup')

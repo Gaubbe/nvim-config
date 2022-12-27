@@ -1,5 +1,4 @@
 local luasnip = require('luasnip')
-
 local cmp = require 'cmp'
 cmp.setup {
 	snippet = {
@@ -38,4 +37,9 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 	},
+	formatting = {
+		format = require('lspkind').cmp_format({
+			mode = 'symbol'
+		})
+	}
 }
