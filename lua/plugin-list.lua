@@ -15,7 +15,11 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	-- Colorscheme
-	use 'ellisonleao/gruvbox.nvim'
+	use {
+		'ellisonleao/gruvbox.nvim',
+		config = 'vim.cmd[[colorscheme gruvbox]]'
+	}
+
 	use 'nvim-treesitter/nvim-treesitter'
 
 	-- LSP
