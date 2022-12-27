@@ -1,6 +1,10 @@
+-- Mason
 require('mason').setup()
-require('mason-lspconfig').setup()
+require('mason-lspconfig').setup({
+	automatic_installation = true -- Will install all servers that are configured through lspconfig
+})
 
+-- lspconfig
 local lspconfig = require('lspconfig');
 
 local lspmap = function(mode, rhs, lhs, opts)
@@ -26,7 +30,7 @@ local on_attach = function(_, bufnr)
 	lspmap('n', 'r', vim.lsp.buf.rename, bufopts)
 	lspmap('n', 'a', vim.lsp.buf.code_action, bufopts)
 	lspmap('n', 'R', vim.lsp.buf.references, bufopts)
-	lspmap('n', 'F', function() vim.lsp.buf.format{ async = true } end, bufopts)
+	lspmap('n', 'F', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
