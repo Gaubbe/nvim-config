@@ -48,6 +48,9 @@ return require('packer').startup(function(use)
 		requires = {{'nvim-lua/plenary.nvim'}}
 	}
 
+	--Rust
+	use 'simrat39/rust-tools.nvim'
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
