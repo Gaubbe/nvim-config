@@ -1,4 +1,8 @@
 local luasnip = require('luasnip')
+luasnip.setup({
+    region_check_events = "CursorHold,InsertLeave,InsertEnter",
+    delete_check_events = "TextChanged,InsertEnter",
+})
 local cmp = require 'cmp'
 cmp.setup {
 	snippet = {
