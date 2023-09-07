@@ -1,5 +1,8 @@
 local luasnip = require('luasnip')
-
+luasnip.setup({
+    region_check_events = "CursorHold,InsertLeave,InsertEnter",
+    delete_check_events = "TextChanged,InsertEnter",
+})
 local cmp = require 'cmp'
 cmp.setup {
 	snippet = {
@@ -38,4 +41,9 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 	},
+	formatting = {
+		format = require('lspkind').cmp_format({
+			mode = 'symbol'
+		})
+	}
 }

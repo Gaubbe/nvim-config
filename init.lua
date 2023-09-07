@@ -1,3 +1,6 @@
 require('plugin-list')
 require('settings')
 require('lsp')
+require('debugging')
+require('telescope-conf')
+require('treesitter-conf')

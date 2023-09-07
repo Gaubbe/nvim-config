@@ -15,17 +15,34 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	-- Colorscheme
-	use 'ellisonleao/gruvbox.nvim'
+	use {
+		'ellisonleao/gruvbox.nvim',
+		config = 'vim.cmd[[colorscheme gruvbox]]'
+	}
+
+	use 'nvim-treesitter/nvim-treesitter'
 
 	-- LSP
 	use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
+	use 'onsails/lspkind.nvim'
 
 	-- cmp
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'L3MON4D3/LuaSnip'
+
+	-- dap
+	use 'mfussenegger/nvim-dap'
+	use 'rcarriga/nvim-dap-ui'
+
+	-- telescope
+	use {
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.0',
+		requires = {{'nvim-lua/plenary.nvim'}}
+	}
 
 	if packer_bootstrap then
 		require('packer').sync()

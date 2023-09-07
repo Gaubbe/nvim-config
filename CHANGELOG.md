@@ -1,6 +1,13 @@
 # Changelog
+## Version 0.2.0
+### Features
+- Basic debugging functionality
+- Basic tree-sitter configuration
+- Basic telescope configuration
+
 ## Patch 0.1.1
 - Changed cmp_nvim_lsp configuration because the update_capabilities method became deprecated
+
 ## Version 0.1.0
 ### Features
 - Plugin management with Packer

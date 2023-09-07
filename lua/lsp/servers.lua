@@ -1,37 +1,22 @@
+-- Mason
 require('mason').setup()
-require('mason-lspconfig').setup()
+require('mason-lspconfig').setup({
+	automatic_installation = true -- Will install all servers that are configured through lspconfig
+})
 
+-- lspconfig
 local lspconfig = require('lspconfig');
 
-local lspmap = function(mode, rhs, lhs, opts)
-	vim.keymap.set(mode, "<Leader>l" .. rhs, lhs, opts)
-end
-
-local opts = { silent = true, noremap = true }
-
-lspmap("n", "f", vim.diagnostic.open_float, opts)
-lspmap("n", "n", vim.diagnostic.goto_next, opts)
-lspmap("n", "N", vim.diagnostic.goto_prev, opts)
+local remaps = require('lsp.remaps')
 
 local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-	local bufopts = { silent = true, noremap = true, buffer = bufnr }
-	lspmap('n', 'd', vim.lsp.buf.definition, bufopts)
-	lspmap('n', 'D', vim.lsp.buf.declaration, bufopts)
-	lspmap('n', 'h', vim.lsp.buf.hover, bufopts)
-	lspmap('n', 'i', vim.lsp.buf.implementation, bufopts)
-	lspmap('n', 's', vim.lsp.buf.signature_help, bufopts)
-	lspmap('n', 't', vim.lsp.buf.type_definition, bufopts)
-	lspmap('n', 'r', vim.lsp.buf.rename, bufopts)
-	lspmap('n', 'a', vim.lsp.buf.code_action, bufopts)
-	lspmap('n', 'R', vim.lsp.buf.references, bufopts)
-	lspmap('n', 'F', function() vim.lsp.buf.format{ async = true } end, bufopts)
+	remaps.remap_for_buffer(bufnr)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
@@ -46,3 +31,9 @@ lspconfig.sumneko_lua.setup {
 	}
 }
 
+lspconfig.rust_analyzer.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+lspconfig.jdtls.setup {}

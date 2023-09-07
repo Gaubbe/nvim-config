@@ -3,4 +3,6 @@
 - Gruvbox colorscheme
 - LSP
 - Autocompletion
+- Debugging
+- Telescope
 
