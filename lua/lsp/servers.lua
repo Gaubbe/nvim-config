@@ -5,7 +5,7 @@ require('mason-lspconfig').setup({
 })
 
 -- lspconfig
-local lspconfig = require('lspconfig');
+local lspconfig = require('lspconfig')
 
 local remaps = require('lsp.remaps')
 
@@ -35,8 +35,6 @@ lspconfig.rust_analyzer.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
-
-lspconfig.jdtls.setup {}
 
 lspconfig.tsserver.setup {
 	on_attach = on_attach,
