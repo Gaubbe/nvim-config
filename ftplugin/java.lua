@@ -1,21 +1,17 @@
 local data_stdpath = vim.fn.stdpath("data")
-print(data_stdpath)
 
 -- Finding jdtls install location
 local jdtls_install_dir = vim.fs.normalize(data_stdpath .. "/mason/packages/jdtls")
-print(jdtls_install_dir)
 
 -- Finding jdtls launcher jar
 local jdtls_laucher_path = vim.fs.find(function(name, path)
 	return name:match("org%.eclipse%.equinox%.launcher_.")
 end, { path = vim.fs.normalize(jdtls_install_dir .. "/plugins") })[1]
-print(jdtls_laucher_path)
 
 -- Finding os specific config location
 local jdtls_config_dir = (function ()
 	-- Finding config location
 	local os_info = vim.loop.os_uname()
-	print(os_info.sysname)
 	if string.find(os_info.sysname, "Windows") then
 		return jdtls_install_dir .. "/config_win"
 	elseif string.find(os_info.sysname, "Linux") then
@@ -24,7 +20,6 @@ local jdtls_config_dir = (function ()
 
 	return ""
 end)()
-print(jdtls_config_dir)
 
 -- Defining workspace path
 local root_dir = require("jdtls.setup").find_root({'.git', 'mvnw', 'gradlew'})
