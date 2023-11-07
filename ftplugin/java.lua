@@ -1,7 +1,10 @@
 local data_stdpath = vim.fn.stdpath("data")
 
+-- Finding mason packages directory
+local mason_packages_dir = vim.fs.normalize(data_stdpath .. "/mason/packages")
+
 -- Finding jdtls install location
-local jdtls_install_dir = vim.fs.normalize(data_stdpath .. "/mason/packages/jdtls")
+local jdtls_install_dir = vim.fs.normalize(mason_packages_dir .. "/jdtls")
 
 -- Finding jdtls launcher jar
 local jdtls_laucher_path = vim.fs.find(function(name, path)
@@ -20,6 +23,9 @@ local jdtls_config_dir = (function ()
 
 	return ""
 end)()
+
+-- Finding java-debug plugin file
+local java_debug_file = vim.fn.glob(mason_packages_dir .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar");
 
 -- Defining workspace path
 local root_dir = require("jdtls.setup").find_root({'.git', 'mvnw', 'gradlew'})
@@ -51,6 +57,12 @@ local config = {
 
 	on_attach = function (_, bufnr)
 		require('lsp.remaps').remap_for_buffer(bufnr)
-	end
+	end,
+
+	init_options = {
+		bundles = {
+			java_debug_file
+		}
+	}
 }
 require('jdtls').start_or_attach(config)
