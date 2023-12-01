@@ -5,7 +5,7 @@ require('mason-lspconfig').setup({
 })
 
 -- lspconfig
-local lspconfig = require('lspconfig');
+local lspconfig = require('lspconfig')
 
 local remaps = require('lsp.remaps')
 
@@ -16,27 +16,17 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+require('neodev').setup({})
+
 lspconfig.lua_ls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim" }
-			},
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true)
-			}
-		}
-	}
 }
 
 lspconfig.rust_analyzer.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
-
-lspconfig.jdtls.setup {}
 
 lspconfig.tsserver.setup {
 	on_attach = on_attach,

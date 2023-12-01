@@ -13,6 +13,7 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+	use 'folke/neodev.nvim'
 
 	-- Colorscheme
 	use {
@@ -27,6 +28,9 @@ return require('packer').startup(function(use)
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
 	use 'onsails/lspkind.nvim'
+
+	-- jdtls
+	use 'mfussenegger/nvim-jdtls'
 
 	-- cmp
 	use 'hrsh7th/nvim-cmp'
