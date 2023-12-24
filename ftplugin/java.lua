@@ -63,6 +63,16 @@ local config = {
 		bundles = {
 			java_debug_file
 		}
+	},
+
+	settings = {
+		java = {
+			project = {
+				referencedLibraries = {
+					"lib/*.jar"
+				}
+			}
+		}
 	}
 }
 require('jdtls').start_or_attach(config)
