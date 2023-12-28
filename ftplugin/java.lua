@@ -1,10 +1,7 @@
-local data_stdpath = vim.fn.stdpath("data")
-
--- Finding mason packages directory
-local mason_packages_dir = vim.fs.normalize(data_stdpath .. "/mason/packages")
+local mason_constants = require('lua.utils.mason.constants')
 
 -- Finding jdtls install location
-local jdtls_install_dir = vim.fs.normalize(mason_packages_dir .. "/jdtls")
+local jdtls_install_dir = mason_constants.append_to_mason_package_dir("jdtls")
 
 -- Finding jdtls launcher jar
 local jdtls_laucher_path = vim.fs.find(function(name, path)
@@ -25,12 +22,12 @@ local jdtls_config_dir = (function ()
 end)()
 
 -- Finding java-debug plugin file
-local java_debug_file = vim.fn.glob(mason_packages_dir .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar");
+local java_debug_file = vim.fn.glob(mason_constants.get_mason_packages_dir() .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar");
 
 -- Defining workspace path
 local root_dir = require("jdtls.setup").find_root({'.git', 'mvnw', 'gradlew'})
 local project_name = vim.fn.fnamemodify(root_dir, ':p:h:t')
-local workspace_dir = vim.fs.normalize(data_stdpath .. "/jdtls-workspaces/" .. project_name)
+local workspace_dir = vim.fs.normalize(mason_constants.get_data_stdpath() .. "/jdtls-workspaces/" .. project_name)
 
 -- Actual configuration
 local config = {
