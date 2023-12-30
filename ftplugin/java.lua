@@ -15,7 +15,7 @@ local jdtls_config_dir = (function ()
 	if string.find(os_info.sysname, "Windows") then
 		return jdtls_install_dir .. "/config_win"
 	elseif string.find(os_info.sysname, "Linux") then
-		return jdtls_install_dir .. "/config_win"
+		return jdtls_install_dir .. "/config_linux"
 	end
 
 	return ""
