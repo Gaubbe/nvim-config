@@ -1,4 +1,4 @@
-local mason_constants = require('lua.utils.mason.constants')
+local mason_constants = require('utils.mason.constants')
 
 -- Finding jdtls install location
 local jdtls_install_dir = mason_constants.append_to_mason_package_dir("jdtls")
