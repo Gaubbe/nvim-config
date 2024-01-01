@@ -15,6 +15,13 @@ end
 local opts = {
 	dap = {
 		adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+	},
+
+	server = {
+		on_attach = function(_, bufnr)
+			vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+			require('lsp.remaps').remap_for_buffer(bufnr)
+		end
 	}
 }
 
