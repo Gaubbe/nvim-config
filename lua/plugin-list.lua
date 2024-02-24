@@ -13,7 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require('lazy').setup({
-	'wbthomason/packer.nvim',
+
 	'folke/neodev.nvim',
 
 	-- Colorscheme
