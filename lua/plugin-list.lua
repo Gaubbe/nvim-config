@@ -40,7 +40,7 @@ return require('lazy').setup({
 
 	-- dap
 	'mfussenegger/nvim-dap',
-	'rcarriga/nvim-dap-ui',
+	{'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'}},
 
 	-- telescope
 	{
