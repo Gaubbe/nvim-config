@@ -1,5 +1,5 @@
 require('settings')
-require('plugin-list')
+require('lazy-conf')
 require('lsp')
 require('debugging')
 require('telescope-conf')
