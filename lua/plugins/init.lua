@@ -1,0 +1,36 @@
+return {
+	'folke/neodev.nvim',
+
+	-- Colorscheme
+	{
+		'ellisonleao/gruvbox.nvim',
+		config = function() vim.cmd[[colorscheme gruvbox]] end
+	},
+
+	'nvim-treesitter/nvim-treesitter',
+
+	-- LSP
+	'williamboman/mason.nvim',
+	'williamboman/mason-lspconfig.nvim',
+	'neovim/nvim-lspconfig',
+	'onsails/lspkind.nvim',
+
+	-- jdtls
+	'mfussenegger/nvim-jdtls',
+
+	-- cmp
+	'hrsh7th/nvim-cmp',
+	'hrsh7th/cmp-nvim-lsp',
+	'L3MON4D3/LuaSnip',
+
+	-- dap
+	'mfussenegger/nvim-dap',
+	{'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'}},
+
+	-- telescope
+	{
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.5',
+		dependencies = {'nvim-lua/plenary.nvim'}
+	}
+}
