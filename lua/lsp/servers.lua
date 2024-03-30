@@ -21,6 +21,22 @@ require('neodev').setup({})
 lspconfig.lua_ls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
+	settings = {
+		Lua = {
+			completion = {
+				callSnippet = "Replace",
+			},
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.stdpath("config") .. "/lua"] = true,
+				}
+			}
+		}
+	}
 }
 
 lspconfig.rust_analyzer.setup {
