@@ -10,8 +10,6 @@ return {
 	'nvim-treesitter/nvim-treesitter',
 
 	-- LSP
-	'williamboman/mason.nvim',
-	'williamboman/mason-lspconfig.nvim',
 	'neovim/nvim-lspconfig',
 	'onsails/lspkind.nvim',
 

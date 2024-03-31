@@ -1,9 +1,3 @@
--- Mason
-require('mason').setup()
-require('mason-lspconfig').setup({
-	automatic_installation = true -- Will install all servers that are configured through lspconfig
-})
-
 -- lspconfig
 local lspconfig = require('lspconfig')
 
