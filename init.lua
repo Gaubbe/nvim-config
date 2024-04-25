@@ -1,5 +1,4 @@
 require('settings')
 require('lazy-conf')
-require('lsp')
 require('debugging')
 require('treesitter-conf')

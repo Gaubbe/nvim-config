@@ -24,11 +24,4 @@ return {
 	-- dap
 	'mfussenegger/nvim-dap',
 	{'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'}},
-
-	-- telescope
-	{
-		'nvim-telescope/telescope.nvim',
-		tag = '0.1.5',
-		dependencies = {'nvim-lua/plenary.nvim'}
-	}
 }
