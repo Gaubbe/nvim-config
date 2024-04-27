@@ -1,5 +1,6 @@
 return {
 	'nvim-telescope/telescope.nvim',
+	name = 'telescope',
 	version = "^0.1.6",
 	dependencies = {'nvim-lua/plenary.nvim'},
 	cmd = 'Telescope',

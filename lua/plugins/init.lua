@@ -1,6 +1,4 @@
 return {
-	'folke/neodev.nvim',
-
 	-- Colorscheme
 	{
 		'ellisonleao/gruvbox.nvim',
@@ -10,7 +8,6 @@ return {
 	'nvim-treesitter/nvim-treesitter',
 
 	-- LSP
-	'neovim/nvim-lspconfig',
 	'onsails/lspkind.nvim',
 
 	-- jdtls
