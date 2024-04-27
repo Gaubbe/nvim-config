@@ -3,6 +3,7 @@ return {
 		'folke/neodev.nvim',
 		name = 'neodev',
 		lazy = true,
+		version = '^2.5.2',
 		config = function ()
 			require('neodev').setup({})
 		end
