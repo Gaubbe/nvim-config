@@ -5,8 +5,11 @@ return {
 		config = function() vim.cmd[[colorscheme gruvbox]] end
 	},
 
-	-- jdtls
-	'mfussenegger/nvim-jdtls',
+	{
+		'mfussenegger/nvim-jdtls',
+		ft = 'java',
+		config = function() require('ftplugin.java') end
+	},
 
 	-- dap
 	'mfussenegger/nvim-dap',
