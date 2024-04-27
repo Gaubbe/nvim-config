@@ -1,11 +1,9 @@
 return {
-	-- Colorscheme
 	{
 		'ellisonleao/gruvbox.nvim',
+		name = 'gruvbox',
 		config = function() vim.cmd[[colorscheme gruvbox]] end
 	},
-
-	'nvim-treesitter/nvim-treesitter',
 
 	-- jdtls
 	'mfussenegger/nvim-jdtls',
