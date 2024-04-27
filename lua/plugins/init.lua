@@ -7,9 +7,6 @@ return {
 
 	'nvim-treesitter/nvim-treesitter',
 
-	-- LSP
-	'onsails/lspkind.nvim',
-
 	-- jdtls
 	'mfussenegger/nvim-jdtls',
 

@@ -1,5 +1,10 @@
 return {
 	{
+		'onsails/lspkind.nvim',
+		name = 'lspkind',
+		lazy = true
+	},
+	{
 		'folke/neodev.nvim',
 		name = 'neodev',
 		lazy = true,
