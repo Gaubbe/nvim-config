@@ -1,12 +1,17 @@
 -- Adapters
 local dap = require('dap')
+local mason_constants = require('utils.mason.constants')
 
 dap.adapters.codelldb = {
 	type = 'server',
 	port = '${port}',
 
 	executable = {
-		command = 'C:\\Users\\Gabriel\\AppData\\Local\\nvim-data\\mason\\bin\\codelldb.cmd',
+		command = vim.fs.find(function(name, _)
+			return name:match("codelldb.*")
+		end, {
+			path = mason_constants.get_mason_bin_dir()
+		}),
 		args = {'--port', '${port}'}
 	}
 }
