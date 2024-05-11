@@ -11,7 +11,7 @@ dap.adapters.codelldb = {
 			return name:match("codelldb.*")
 		end, {
 			path = mason_constants.get_mason_bin_dir()
-		}),
+		})[1],
 		args = {'--port', '${port}'}
 	}
 }
