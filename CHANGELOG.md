@@ -1,4 +1,8 @@
 # Changelog
+## Version 0.3.0
+### Features
+- Changed plugin manager to lazy
+
 ## Version 0.2.0
 ### Features
 - Basic debugging functionality

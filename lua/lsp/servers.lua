@@ -1,11 +1,5 @@
--- Mason
-require('mason').setup()
-require('mason-lspconfig').setup({
-	automatic_installation = true -- Will install all servers that are configured through lspconfig
-})
-
 -- lspconfig
-local lspconfig = require('lspconfig');
+local lspconfig = require('lspconfig')
 
 local remaps = require('lsp.remaps')
 
@@ -16,16 +10,24 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+require('neodev').setup({})
+
 lspconfig.lua_ls.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
+			completion = {
+				callSnippet = "Replace",
+			},
 			diagnostics = {
-				globals = { "vim" }
+				globals = { "vim" },
 			},
 			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true)
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.stdpath("config") .. "/lua"] = true,
+				}
 			}
 		}
 	}
@@ -36,4 +38,7 @@ lspconfig.rust_analyzer.setup {
 	capabilities = capabilities
 }
 
-lspconfig.jdtls.setup {}
+lspconfig.tsserver.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
