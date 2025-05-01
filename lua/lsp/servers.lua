@@ -9,34 +9,3 @@ local on_attach = function(_, bufnr)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-lspconfig.lua_ls.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			completion = {
-				callSnippet = "Replace",
-			},
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				}
-			}
-		}
-	}
-}
-
-lspconfig.rust_analyzer.setup {
-	on_attach = on_attach,
-	capabilities = capabilities
-}
-
-lspconfig.tsserver.setup {
-	on_attach = on_attach,
-	capabilities = capabilities
-}
