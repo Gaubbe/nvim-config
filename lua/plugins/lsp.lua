@@ -1,27 +1,12 @@
 return {
-	{
-		'onsails/lspkind.nvim',
-		name = 'lspkind',
-		lazy = true
-	},
-	{
-		'folke/neodev.nvim',
-		name = 'neodev',
-		lazy = true,
-		version = '^2.5.2',
-		config = function ()
-			require('neodev').setup({})
-		end
-	},
+	-- Global LSP plugins
 	{
 		'neovim/nvim-lspconfig',
 		name = 'lspconfig',
-		dependencies = { 'mason-lspconfig', 'neodev' },
-		event = { "BufReadPost", "BufNewFile" },
-		cmd = { "LspInfo", "LspInstall", "LspUninstall" },
-		keys = "<Leader>l",
+		version = '^2.0.0',
 		config = function ()
 			require('lsp')
+			require('languages')
 		end
 	},
 	{
@@ -39,4 +24,12 @@ return {
 		name = 'LuaSnip',
 		lazy = true
 	},
+
+	-- Lua plugins
+	{
+		'folke/lazydev.nvim',
+		version = '^1.9.0',
+		ft = 'lua',
+		opts = {},
+	}
 }
