@@ -15,16 +15,4 @@ return {
 			require('mason').setup()
 		end
 	},
-	{
-		'williamboman/mason-lspconfig.nvim',
-		name = 'mason-lspconfig',
-		version = '^1.28.0',
-		dependencies = {'mason'},
-		cmd = "LspInstall",
-		config = function ()
-			require('mason-lspconfig').setup({
-				automatic_installation = true
-			})
-		end
-	}
 }
