@@ -1,1 +1,1 @@
-require('languages.lua.lsp')
+require('languages.lua')
