@@ -1,4 +1,5 @@
 return {
+	-- Global LSP plugins
 	{
 		'neovim/nvim-lspconfig',
 		name = 'lspconfig',
@@ -23,4 +24,12 @@ return {
 		name = 'LuaSnip',
 		lazy = true
 	},
+
+	-- Lua plugins
+	{
+		'folke/lazydev.nvim',
+		version = '^1.9.0',
+		ft = 'lua',
+		opts = {},
+	}
 }
