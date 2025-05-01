@@ -41,9 +41,4 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 	},
-	formatting = {
-		format = require('lspkind').cmp_format({
-			mode = 'symbol'
-		})
-	}
 }
