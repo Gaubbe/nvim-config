@@ -5,6 +5,7 @@ return {
 		version = '^2.0.0',
 		config = function ()
 			require('lsp')
+			require('languages')
 		end
 	},
 	{
