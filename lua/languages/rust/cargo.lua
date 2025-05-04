@@ -87,6 +87,7 @@ local M = {}
 --- @class CargoMetadata
 --- @field packages CargoPackage[] List of packages included in the workspace
 --- @field workspace_members string[] List of all the workspace members
+--- @field workspace_default_members string[] List of all the default workspace members
 --- @field resolve any Graph of the dependencies
 --- @field target_directory string The target directory
 --- @field version 1 The version of the metadata command output
