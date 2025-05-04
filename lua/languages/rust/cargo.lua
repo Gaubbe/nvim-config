@@ -112,7 +112,12 @@ M.get_metadata = function (client)
 	}):wait()
 
 	if obj.stdout ~= nil then
-		metadata = vim.json.decode(obj.stdout)
+		metadata = vim.json.decode(obj.stdout, {
+			luanil = {
+				object = true,
+				array = true,
+			}
+		})
 	end
 
 	return metadata
