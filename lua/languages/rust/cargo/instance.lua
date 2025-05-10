@@ -43,4 +43,47 @@ function CargoInstance:get_metadata()
 	return metadata
 end
 
+--- A representation of a runnable target for nvim-dap
+--- @class Runnable
+--- @field name string The name of the target
+--- @field type 'bin'|'test'|'example' The type of the target
+--- @field project string? The project of the target, if there is more than one
+--- @field executable string The file path to the exexutable
+
+--- Checks whether a value is contained within an array
+--- @generic T
+--- @param tab T[] The table to check
+--- @param value T The value
+local contains = function(tab, value)
+	for _, v in ipairs(tab) do
+		if v == value then
+			return true
+		end
+	end
+	return false
+end
+
+--- Obtains all the runnables in this cargo project
+--- @return Runnable[] # The runnables
+function CargoInstance:get_runnables()
+	--- @type Runnable[]
+	local runnables = {}
+	local metadata = self:get_metadata()
+
+	for _, p in pairs(metadata.packages) do
+		for _, t in pairs(p.targets) do
+			-- TODO: Support other kinds of targets
+			if contains(t.kind, 'bin') then
+				table.insert(runnables, {
+					name = t.name,
+					type = 'bin',
+					project = p.name,
+				})
+			end
+		end
+	end
+
+	return runnables
+end
+
 return CargoInstance
