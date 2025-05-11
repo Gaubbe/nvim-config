@@ -43,19 +43,6 @@ function CargoInstance:get_metadata()
 	return metadata
 end
 
---- Checks whether a value is contained within an array
---- @generic T
---- @param tab T[] The table to check
---- @param value T The value
-local contains = function(tab, value)
-	for _, v in ipairs(tab) do
-		if v == value then
-			return true
-		end
-	end
-	return false
-end
-
 --- Obtains all the runnables in this cargo project
 --- @return CargoRunnable[] # The runnables
 function CargoInstance:get_runnables()
@@ -65,13 +52,47 @@ function CargoInstance:get_runnables()
 
 	for _, p in pairs(metadata.packages) do
 		for _, t in pairs(p.targets) do
-			-- TODO: Support other kinds of targets
-			if contains(t.kind, 'bin') then
-				table.insert(runnables, {
+			-- Each target only ever seems to have one kind and crate-type
+			-- TODO: actually check the whole array?
+
+			if t.test and t.kind[1] ~= 'test' then
+				--- @type CargoRunnable
+				local r = {
+					type = 'utest',
 					name = t.name,
-					type = 'bin',
 					project = p.name,
-				})
+				}
+				table.insert(runnables, r)
+			end
+
+			if t.kind[1] == 'test' then
+				--- @type CargoRunnable
+				local r = {
+					type = 'itest',
+					name = t.name,
+					project = p.name,
+				}
+				table.insert(runnables, r)
+			end
+
+			if t.kind[1] == 'example' then
+				--- @type CargoRunnable
+				local r = {
+					type = 'example',
+					name = t.name,
+					project = p.name,
+				}
+				table.insert(runnables, r)
+			end
+
+			if t.kind[1] == 'bin' then
+				--- @type CargoRunnable
+				local r = {
+					type = 'bin',
+					name = t.name,
+					project = p.name,
+				}
+				table.insert(runnables, r)
 			end
 		end
 	end

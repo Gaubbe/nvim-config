@@ -2,33 +2,33 @@
 
 --- All the crate types in cargo
 --- @alias CargoCrateType
---- | 'bin' # A binary target
---- | 'lib' # A Rust library target
---- | 'dylib' # A Rust dynamic library target
---- | 'staticlib' # A native static library target
---- | 'cdylib' # A native dynamic library target
---- | 'rlib' # A different Rust library target
---- | 'proc-macro' # A procedural macro target
+--- | '"bin"' # A binary target
+--- | '"lib"' # A Rust library target
+--- | '"dylib"' # A Rust dynamic library target
+--- | '"staticlib"' # A native static library target
+--- | '"cdylib"' # A native dynamic library target
+--- | '"rlib"' # A different Rust library target
+--- | '"proc-macro"' # A procedural macro target
 
 --- All the target kinds recognized by cargo
 --- @alias CargoTargetKind
---- | 'bin' # A binary target
---- | 'lib' # A Rust library target
---- | 'dylib' # A Rust dynamic library target
---- | 'staticlib' # A native static library target
---- | 'cdylib' # A native dynamic library target
---- | 'rlib' # A different Rust library target
---- | 'proc-macro' # A procedural macro target
---- | 'example' # An example target
---- | 'test' # An integration test target
---- | 'bench' # A benchmark target
---- | 'custom-build' # A build script target
+--- | '"bin"' # A binary target
+--- | '"lib"' # A Rust library target
+--- | '"dylib"' # A Rust dynamic library target
+--- | '"staticlib"' # A native static library target
+--- | '"cdylib"' # A native dynamic library target
+--- | '"rlib"' # A different Rust library target
+--- | '"proc-macro"' # A procedural macro target
+--- | '"example"' # An example target
+--- | '"test"' # An integration test target
+--- | '"bench"' # A benchmark target
+--- | '"custom-build"' # A build script target
 
 --- A representation of a package target given by the cargo metadata command
 --- https://doc.rust-lang.org/cargo/commands/cargo-metadata.html
 --- @class CargoTarget
---- @field kind CargoTargetKind[] The kinds of the target
---- @field crate_types CargoCrateType[] The crate types of the target
+--- @field kind (CargoTargetKind)[] The kinds of the target
+--- @field crate_types (CargoCrateType)[] The crate types of the target
 --- @field name string The name of the target
 --- @field src_path string The absolute file path to the root source file
 --- @field edition string The Rust edition of the target
@@ -97,5 +97,5 @@
 --- A representation of a runnable target from cargo for nvim-dap
 --- @class CargoRunnable
 --- @field name string The name of the target
---- @field type 'bin'|'test'|'example' The type of the target
+--- @field type 'bin'|'utest'|'itest'|'example' The type of the target
 --- @field project string? The project of the target, if there is more than one
