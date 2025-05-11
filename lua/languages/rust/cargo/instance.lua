@@ -43,61 +43,6 @@ function CargoInstance:get_metadata()
 	return metadata
 end
 
---- Obtains all the runnables in this cargo project
---- @return CargoRunnable[] # The runnables
-function CargoInstance:get_runnables()
-	--- @type CargoRunnable[]
-	local runnables = {}
-	local metadata = self:get_metadata()
-
-	for _, p in pairs(metadata.packages) do
-		for _, t in pairs(p.targets) do
-			-- Each target only ever seems to have one kind and crate-type
-			-- TODO: actually check the whole array?
-
-			if t.test and t.kind[1] ~= 'test' then
-				--- @type CargoRunnable
-				local r = {
-					type = 'utest',
-					name = t.name,
-					project = p.name,
-				}
-				table.insert(runnables, r)
-			end
-
-			if t.kind[1] == 'test' then
-				--- @type CargoRunnable
-				local r = {
-					type = 'itest',
-					name = t.name,
-					project = p.name,
-				}
-				table.insert(runnables, r)
-			end
-
-			if t.kind[1] == 'example' then
-				--- @type CargoRunnable
-				local r = {
-					type = 'example',
-					name = t.name,
-					project = p.name,
-				}
-				table.insert(runnables, r)
-			end
-
-			if t.kind[1] == 'bin' then
-				--- @type CargoRunnable
-				local r = {
-					type = 'bin',
-					name = t.name,
-					project = p.name,
-				}
-				table.insert(runnables, r)
-			end
-		end
-	end
-
-	return runnables
 end
 
 return CargoInstance

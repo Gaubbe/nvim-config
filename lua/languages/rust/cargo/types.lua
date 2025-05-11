@@ -12,13 +12,7 @@
 
 --- All the target kinds recognized by cargo
 --- @alias CargoTargetKind
---- | '"bin"' # A binary target
---- | '"lib"' # A Rust library target
---- | '"dylib"' # A Rust dynamic library target
---- | '"staticlib"' # A native static library target
---- | '"cdylib"' # A native dynamic library target
---- | '"rlib"' # A different Rust library target
---- | '"proc-macro"' # A procedural macro target
+--- | CargoCrateType # A normal crate type
 --- | '"example"' # An example target
 --- | '"test"' # An integration test target
 --- | '"bench"' # A benchmark target
@@ -93,9 +87,3 @@
 --- @field version 1 The version of the metadata command output
 --- @field workspace_root string The root directory of the workspace
 --- @field metadata any The metadata of the workspace
-
---- A representation of a runnable target from cargo for nvim-dap
---- @class CargoRunnable
---- @field name string The name of the target
---- @field type 'bin'|'utest'|'itest'|'example' The type of the target
---- @field project string? The project of the target, if there is more than one

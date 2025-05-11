@@ -12,9 +12,6 @@ M.create_cargo_user_commands = function (client, bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, 'CargoMetadata', function ()
 		vim.print(vim.inspect(cargo:get_metadata()))
 	end, {})
-	vim.api.nvim_buf_create_user_command(bufnr, 'CargoRunnables', function ()
-		vim.print(vim.inspect(cargo:get_runnables()))
-	end, {})
 end
 
 return M
