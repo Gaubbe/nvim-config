@@ -93,3 +93,9 @@
 --- @field version 1 The version of the metadata command output
 --- @field workspace_root string The root directory of the workspace
 --- @field metadata any The metadata of the workspace
+
+--- A representation of a runnable target from cargo for nvim-dap
+--- @class CargoRunnable
+--- @field name string The name of the target
+--- @field type 'bin'|'test'|'example' The type of the target
+--- @field project string? The project of the target, if there is more than one
