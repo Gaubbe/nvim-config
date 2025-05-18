@@ -21,7 +21,8 @@ M.create_cargo_user_commands = function (client, bufnr)
 				end
 			end
 		end
-		vim.inspect(cargo:build('hello', 'hello', on_exit))
+		local metadata = cargo:get_metadata()
+		cargo:build(metadata.packages[1].name, metadata.packages[1].targets[1], on_exit, true)
 	end, {})
 end
 

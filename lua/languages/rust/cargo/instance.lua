@@ -79,20 +79,44 @@ end
 
 --- Builds a target from a package
 ---@param package_name string
----@param target_name string
+---@param target CargoTarget
 ---@param on_exit fun(messages: (CargoBuildMessage)[])
 ---@param tests boolean?
-function CargoInstance:build(package_name, target_name, on_exit, tests)
+function CargoInstance:build(package_name, target, on_exit, tests)
 	if tests == nil then
 		tests = false
 	end
 
-	vim.system({
+	local command = {
 		'cargo',
 		'build',
 		'--message-format',
 		'json',
-	}, {
+		'--package',
+		package_name,
+	}
+
+	if target.kind[1] == "bin" then
+		table.insert(command, '--bin')
+		table.insert(command, target.name)
+	elseif is_lib_type(target.crate_types[1]) then
+		table.insert(command, '--lib')
+	elseif target.kind[1] == "example" then
+		table.insert(command, '--example')
+		table.insert(command, target.name)
+	elseif target.kind[1] == "test" then
+		table.insert(command, '--test')
+		table.insert(command, target.name)
+	elseif target.kind[1] == "bench" then
+		table.insert(command, '--bench')
+		table.insert(command, target.name)
+	end
+
+	if tests then
+		table.insert(command, '--tests')
+	end
+
+	vim.system(command, {
 		cwd = self.root_dir,
 	}, function(out)
 		---@type (CargoBuildMessage)[]
