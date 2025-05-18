@@ -61,4 +61,49 @@ local is_lib_type = function (crate_type)
 		or crate_type == 'proc-macro'
 end
 
+--- Returns iterator of lines in string
+---@param str string
+---@return fun(): string?
+local lines = function(str)
+	local from = 1
+	local delim_from, delim_to = string.find(str, '\n', from)
+	return function ()
+		if delim_from ~= nil then
+			local result = string.sub(str, from, delim_from - 1)
+			from = delim_to + 1
+			delim_from, delim_to = string.find(str, '\n', from)
+			return result
+		end
+	end
+end
+
+--- Builds a target from a package
+---@param package_name string
+---@param target_name string
+---@param on_exit fun(messages: (CargoBuildMessage)[])
+---@param tests boolean?
+function CargoInstance:build(package_name, target_name, on_exit, tests)
+	if tests == nil then
+		tests = false
+	end
+
+	vim.system({
+		'cargo',
+		'build',
+		'--message-format',
+		'json',
+	}, {
+		cwd = self.root_dir,
+	}, function(out)
+		---@type (CargoBuildMessage)[]
+		local messages = {}
+
+		for l in lines(out.stdout) do
+			table.insert(messages, cargo_json_decode(l))
+		end
+
+		on_exit(messages)
+	end)
+end
+
 return CargoInstance

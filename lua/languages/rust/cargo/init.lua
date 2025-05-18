@@ -12,6 +12,17 @@ M.create_cargo_user_commands = function (client, bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, 'CargoMetadata', function ()
 		vim.print(vim.inspect(cargo:get_metadata()))
 	end, {})
+	vim.api.nvim_buf_create_user_command(bufnr, 'CargoBuild', function ()
+		---@param messages (CargoBuildMessage)[]
+		local on_exit = function(messages)
+			for _, v in pairs(messages) do
+				if v.reason == "compiler-artifact" then
+					print(v.executable)
+				end
+			end
+		end
+		vim.inspect(cargo:build('hello', 'hello', on_exit))
+	end, {})
 end
 
 return M
