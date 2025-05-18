@@ -3,6 +3,17 @@
 --- @field public root_dir string The root directory of the cargo workspace
 local CargoInstance = {}
 
+---@param str string
+---@return any
+local cargo_json_decode = function(str)
+	return vim.json.decode(str, {
+		luanil = {
+			object = true,
+			array = true,
+		}
+	})
+end
+
 --- Creates a new cargo instance
 --- @param root_dir string The root directory of the cargo workspace
 --- @return CargoInstance # The instance
@@ -32,12 +43,7 @@ function CargoInstance:get_metadata()
 	}):wait()
 
 	if obj.stdout ~= nil then
-		metadata = vim.json.decode(obj.stdout, {
-			luanil = {
-				object = true,
-				array = true,
-			}
-		})
+		metadata = cargo_json_decode(obj.stdout)
 	end
 
 	return metadata
