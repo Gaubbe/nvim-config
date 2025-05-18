@@ -49,18 +49,6 @@ function CargoInstance:get_metadata()
 	return metadata
 end
 
---- Checks whether a crate type is a lib type
----@param crate_type CargoCrateType
----@return boolean
-local is_lib_type = function (crate_type)
-	return crate_type == 'lib'
-		or crate_type == 'dylib'
-		or crate_type == 'staticlib'
-		or crate_type == 'cdylib'
-		or crate_type == 'rlib'
-		or crate_type == 'proc-macro'
-end
-
 --- Returns iterator of lines in string
 ---@param str string
 ---@return fun(): string?
@@ -99,7 +87,7 @@ function CargoInstance:build(package_name, target, on_exit, tests)
 	if target.kind[1] == "bin" then
 		table.insert(command, '--bin')
 		table.insert(command, target.name)
-	elseif is_lib_type(target.crate_types[1]) then
+	elseif require("languages.rust.cargo.utils").is_lib_type(target.crate_types[1]) then
 		table.insert(command, '--lib')
 	elseif target.kind[1] == "example" then
 		table.insert(command, '--example')
