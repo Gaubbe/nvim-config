@@ -17,12 +17,15 @@ M.create_cargo_user_commands = function (client, bufnr)
 		local on_exit = function(messages)
 			for _, v in pairs(messages) do
 				if v.reason == "compiler-artifact" then
+					print('compiler-artifact')
 					print(v.executable)
 				end
 			end
 		end
 		local metadata = cargo:get_metadata()
-		cargo:build(metadata.packages[1].name, metadata.packages[1].targets[1], on_exit, true)
+		require('languages.rust.cargo.target_picker').target_picker(metadata, function(entry)
+			cargo:build(entry[1], entry[2], on_exit, entry[3])
+		end)
 	end, {})
 end
 
