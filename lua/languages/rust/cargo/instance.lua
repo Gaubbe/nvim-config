@@ -84,7 +84,9 @@ function CargoInstance:build(package_name, target, on_exit, tests)
 		package_name,
 	}
 
-	if target.kind[1] == "bin" then
+	if tests then
+		table.insert(command, '--tests')
+	elseif target.kind[1] == "bin" then
 		table.insert(command, '--bin')
 		table.insert(command, target.name)
 	elseif require("languages.rust.cargo.utils").is_lib_type(target.crate_types[1]) then
@@ -98,10 +100,6 @@ function CargoInstance:build(package_name, target, on_exit, tests)
 	elseif target.kind[1] == "bench" then
 		table.insert(command, '--bench')
 		table.insert(command, target.name)
-	end
-
-	if tests then
-		table.insert(command, '--tests')
 	end
 
 	vim.system(command, {
