@@ -4,7 +4,9 @@ local utils = require('lsp.utils')
 ---@param bufnr integer
 local on_attach = function (client, bufnr)
 	utils.on_attach(client, bufnr)
-	require('languages.rust.cargo').create_cargo_user_commands(client, bufnr)
+	local instance = require('languages.rust.cargo.instance'):new(client.root_dir)
+	require('languages.rust.cargo').create_cargo_user_commands(instance, bufnr)
+	require('languages.rust.debugging').configure_dap(instance)
 end
 
 vim.lsp.config('rust_analyzer', {
