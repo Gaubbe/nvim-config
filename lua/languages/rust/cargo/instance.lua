@@ -102,6 +102,8 @@ function CargoInstance:build(package_name, target, on_exit, tests)
 		table.insert(command, target.name)
 	end
 
+	local wrapped_on_exit = vim.schedule_wrap(on_exit)
+
 	vim.system(command, {
 		cwd = self.root_dir,
 	}, function(out)
@@ -112,7 +114,7 @@ function CargoInstance:build(package_name, target, on_exit, tests)
 			table.insert(messages, cargo_json_decode(l))
 		end
 
-		on_exit(messages)
+		wrapped_on_exit(messages)
 	end)
 end
 
