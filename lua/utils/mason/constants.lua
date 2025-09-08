@@ -36,4 +36,15 @@ M.append_to_mason_share_dir = function (subdir)
 	return vim.fs.normalize(mason_share_dir .. "/" .. subdir)
 end
 
+---Finds an executable in the bin directory
+---@param executable_name string
+---@return string
+M.find_in_mason_bin_dir = function (executable_name)
+	return vim.fs.find(function (name, _)
+		return string.match(name, executable_name) ~= nil
+	end, {
+		path = M.get_mason_bin_dir(),
+	})[1]
+end
+
 return M

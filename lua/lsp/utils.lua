@@ -5,7 +5,7 @@ local remaps = require('lsp.remaps')
 local M = {}
 
 M.on_attach = function(_, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 	remaps.remap_for_buffer(bufnr)
 end
 
