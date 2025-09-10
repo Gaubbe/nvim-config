@@ -41,7 +41,9 @@ end
 ---@return string
 M.find_in_mason_bin_dir = function (executable_name)
 	return vim.fs.find(function (name, _)
-		return string.match(name, executable_name) ~= nil
+		local escaped_executable_name = executable_name:gsub('%-', '%%-')
+
+		return name:match(escaped_executable_name) ~= nil
 	end, {
 		path = M.get_mason_bin_dir(),
 	})[1]
