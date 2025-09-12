@@ -1,3 +1,5 @@
+local CmakeCmdBuilder = require('languages.cpp.cmake.cmd_builder')
+
 --- An instance of the cmake workspace
 --- @class CmakeInstance
 --- @field public root_dir string The root directory of the cmake workspace
@@ -16,6 +18,12 @@ function CmakeInstance:new(root_dir, build_dir)
 	self.__index = self
 
 	return new
+end
+
+--- Returns a command builder
+--- @return CmakeCmdBuilder # The command builder
+function CmakeInstance:cmd_builder()
+	return CmakeCmdBuilder:new(self)
 end
 
 return CmakeInstance

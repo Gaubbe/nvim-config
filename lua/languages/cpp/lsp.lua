@@ -14,12 +14,17 @@ local on_attach = function (client, bufnr)
 	if is_cmake then
 		local build_dir = vim.fs.normalize(client.root_dir .. '/build')
 		local instance = cmake.CmakeInstance:new(client.root_dir, build_dir)
+
+		local generate_cmd = instance:cmd_builder():generate():cmd()
+
+		vim.system(generate_cmd):wait()
 	end
 end
 
 vim.lsp.config('clangd', {
 	on_attach = on_attach,
 	capabilities = utils.capabilities,
-	cmd = { mason.find_in_mason_bin_dir('clangd') }
+	cmd = { mason.find_in_mason_bin_dir('clangd') },
+	root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", "configure.ac", ".git", "CMakeLists.txt" },
 })
 vim.lsp.enable('clangd')
