@@ -15,9 +15,7 @@ local on_attach = function (client, bufnr)
 		local build_dir = vim.fs.normalize(client.root_dir .. '/build')
 		local instance = cmake.CmakeInstance:new(client.root_dir, build_dir)
 
-		local generate_cmd = instance:cmd_builder():generate():cmd()
-
-		vim.system(generate_cmd):wait()
+		coroutine.resume(coroutine.create(function () instance:init_project() end))
 	end
 end
 

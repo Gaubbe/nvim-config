@@ -1,4 +1,6 @@
 local CmakeCmdBuilder = require('languages.cpp.cmake.cmd_builder')
+local async = require('utils.async')
+local platform = require('utils.platform')
 
 --- An instance of the cmake workspace
 --- @class CmakeInstance
@@ -24,6 +26,27 @@ end
 --- @return CmakeCmdBuilder # The command builder
 function CmakeInstance:cmd_builder()
 	return CmakeCmdBuilder:new(self)
+end
+
+--- @async
+--- Initializes the cmake project
+function CmakeInstance:init_project()
+	local generate_cmd = self:cmd_builder():generate()
+		:add_argument('-DCMAKE_EXPORT_COMPILE_COMMANDS=ON')
+		:cmd()
+
+	async.system(generate_cmd, {
+		cwd = self.root_dir,
+	})
+
+	local link_cmd = platform.create_symlink_cmd(
+		self.build_dir .. '/compile_commands.json',
+		self.root_dir .. '/compile_commands.json'
+	)
+
+	async.system(link_cmd, {
+		cwd = self.root_dir,
+	})
 end
 
 return CmakeInstance
