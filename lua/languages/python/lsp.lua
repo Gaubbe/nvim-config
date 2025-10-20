@@ -8,6 +8,17 @@ end
 
 vim.lsp.config('pyright', {
 	on_attach = on_attach,
-	capabilities = utils.capabilities
+	capabilities = utils.capabilities,
+	settings = {
+		python = {
+			analysis = {
+				typeCheckingMode = "standard",
+				diagnosticSeverityOverrides = {
+					reportMissingImports = "error",
+					reportMissingTypeStubs = "error",
+				},
+			},
+		},
+	}
 })
 vim.lsp.enable('pyright')
