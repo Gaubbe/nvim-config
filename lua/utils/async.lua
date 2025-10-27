@@ -11,13 +11,19 @@ M.system = function (cmd, opts)
 
 	--- @type vim.SystemCompleted?
 	local ret = nil
+	local running = true
 
-	local system_obj = vim.system(cmd, opts, function (completed)
+	local res = vim.system(cmd, opts, function (completed)
+		running = false
 		ret = completed
-		coroutine.resume(this)
+		if coroutine.status(this) == "suspended" then
+			coroutine.resume(this)
+		end
 	end)
 
-	coroutine.yield(system_obj)
+	if running then
+		coroutine.yield(res)
+	end
 
 	--- @cast ret vim.SystemCompleted
 	return ret
