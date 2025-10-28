@@ -6,14 +6,14 @@ local M = {}
 --- @param link string The filepath to the link
 --- @return string[] # The command to run
 M.create_symlink_cmd = function (orig, link)
+	-- For some reason, Windows requires admin privileges to create symlinks
+	-- so we just create a copy
 	return {
-		'New-Item',
-		'-ItemType',
-		'SymbolicLink',
+		'Copy-Item',
 		'-Path',
-		vim.fs.normalize(link, {win = true}),
-		'-Target',
 		vim.fs.normalize(orig, {win = true}),
+		'-Destination',
+		vim.fs.normalize(link, {win = true}),
 	}
 end
 
