@@ -14,4 +14,9 @@ M.create_symlink_cmd = function (orig, link)
 	}
 end
 
+--- Sets-up Neovim shell options
+M.set_shell_options = function ()
+	-- Does nothing. We keep the default options.
+end
+
 return M

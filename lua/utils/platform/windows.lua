@@ -17,4 +17,12 @@ M.create_symlink_cmd = function (orig, link)
 	}
 end
 
+--- Sets-up Neovim shell options
+M.set_shell_options = function ()
+	vim.o.shell = 'powershell.exe'
+	vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command'
+	vim.o.shellquote = ''
+	vim.o.shellxquote = ''
+end
+
 return M

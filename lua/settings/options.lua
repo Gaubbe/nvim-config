@@ -22,3 +22,5 @@ vim.opt.lazyredraw = true
 vim.opt.hidden = false
 vim.g.mapleader = " "
 
+-- Shell
+require('utils.platform').set_shell_options()
