@@ -32,6 +32,8 @@ end
 --- Initializes the cmake project
 function CmakeInstance:init_project()
 	local generate_cmd = self:cmd_builder():generate()
+		:add_argument('-G')
+		:add_argument('Ninja')
 		:add_argument('-DCMAKE_EXPORT_COMPILE_COMMANDS=ON')
 		:cmd()
 

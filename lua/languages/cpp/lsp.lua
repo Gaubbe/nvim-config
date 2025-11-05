@@ -23,6 +23,5 @@ vim.lsp.config('clangd', {
 	on_attach = on_attach,
 	capabilities = utils.capabilities,
 	cmd = { mason.find_in_mason_bin_dir('clangd') },
-	root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", "configure.ac", ".git", "CMakeLists.txt" },
 })
 vim.lsp.enable('clangd')
